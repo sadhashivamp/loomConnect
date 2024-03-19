@@ -3,12 +3,16 @@ import React, { useState } from 'react';
 import { Container, Form, Button, Row, Col, Nav } from 'react-bootstrap';
 import Main from "../Assets/Main.gif";
 import Reg from "../Assets/Reg.png";
+import axios from 'axios'
+import { useNavigate, Link } from 'react-router-dom';
+
 
 const LoginPage = () => {
     const [formData, setFormData] = useState({
         username: '',
-        password: '',
+        phoneNumber: '',
     });
+    const navigate = useNavigate()
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -18,7 +22,16 @@ const LoginPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Submit login data to backend API
-        console.log(formData);
+        const {username, phoneNumber} = formData;
+        axios.post("http://localhost:3002/login", {
+            username, phoneNumber
+        }).then(result => {
+
+            console.log("result", result)
+            if (result.data == "Success") {
+                navigate('/')
+            }
+        }).catch(err => console.log(err))
         // Reset form data
         setFormData({
             username: '',
@@ -46,8 +59,8 @@ const LoginPage = () => {
                 <Row className="align-items-center justify-content-center">
                     
                     <Col md={6} className="mb-4 mb-md-0">
-                        <div className="registration-box p-4 rounded bg-light border">
-                            <h1 className="mb-4">Login</h1>
+                        <div className="registration-box p-4 rounded  border">
+                            <h1 className="mb-4"  style={{color: '#0d6efd'}}>Login</h1>
                             <Form onSubmit={handleSubmit}>
                                 <Form.Group className="mb-2" controlId="username">
                                     <Form.Control
@@ -59,12 +72,12 @@ const LoginPage = () => {
                                         required
                                     />
                                 </Form.Group>
-                                <Form.Group className="mb-2" controlId="password">
+                                <Form.Group className="mb-2 mb-md-4" controlId="phoneNumber">
                                     <Form.Control
-                                        type="password"
-                                        placeholder="Password"
-                                        name="password"
-                                        value={formData.password}
+                                        type="tel"
+                                        placeholder="Phone Number"
+                                        name="phoneNumber"
+                                        value={formData.phoneNumber}
                                         onChange={handleChange}
                                         required
                                     />
@@ -73,12 +86,12 @@ const LoginPage = () => {
                                     Login
                                 </Button>
                             </Form>
-                            <Nav className="mt-3" style={{ justifyContent: 'center' }}>
-                                <Nav.Item>
-                                    <Nav.Link href="#">Forgot Password</Nav.Link>
+                            <Nav className="mt-3" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                <Nav.Item style={{fontFamily: "initial"}}>
+                                <Link to="/" style={{ textDecoration: 'none' , fontFamily: "initial" }}>Forgot Password</Link>
                                 </Nav.Item>
                                 <Nav.Item>
-                                    <Nav.Link href="#">Register</Nav.Link>
+                                    <Link to="/owner-registration" style={{ textDecoration: 'none' , fontFamily: "initial" }}>Register</Link>
                                 </Nav.Item>
                             </Nav>
                         </div>

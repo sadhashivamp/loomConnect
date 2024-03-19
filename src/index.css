@@ -62,3 +62,11 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.registration-box {
+    background-color: #9aaabbcc;
+}
+
+.nav {
+    --bs-nav-link-padding-x: 0rem !important;
+}

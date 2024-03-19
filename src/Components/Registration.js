@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Reg from "../Assets/Reg.png";
 import Main from "../Assets/Main.gif";
 import { Container, Form, Button, Row, Col, Nav } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios'
 const RegistrationPage = () => {
     const [formData, setFormData] = useState({
         username: '',
@@ -11,6 +11,7 @@ const RegistrationPage = () => {
         password: '',
         role: 'owner' // Default role
     });
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -20,7 +21,15 @@ const RegistrationPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Submit registration data to backend API
-        console.log(formData);
+        const { username, phoneNumber, pasword, role } = formData
+        axios.post("http://localhost:3002/register", {
+            username, phoneNumber, pasword, role
+        }).then(result => {
+            console.log("result", result)
+            if (result.status == 200) {
+                navigate('/login')
+            }
+        }).catch(err => console.log(err))
         // Reset form data
         setFormData({
             username: '',
@@ -49,8 +58,8 @@ const RegistrationPage = () => {
             <Container className="reg-container" >
                 <Row className="align-items-center justify-content-center">
                     <Col md={6} className=" mb-4 mb-md-0">
-                        <div className="registration-box p-4 rounded bg-light border">
-                            <h1 className="mb-4">Registration</h1>
+                        <div className="registration-box p-4 rounded border">
+                            <h1 className="mb-4" style={{color: '#0d6efd'}}>Registration</h1>
                             <Form onSubmit={handleSubmit}>
                                 <Form.Group className="mb-2 mb-md-4" controlId="username">
                                     <Form.Control
@@ -96,12 +105,9 @@ const RegistrationPage = () => {
                                     Sign Up
                                 </Button>
                             </Form>
-                            <Nav  style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                            <Nav style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                 <Nav.Item>
-                                    <Link to="/forgot-password" style={{textDecoration: 'none'}}>Forgot Password</Link>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <Link to="/login" style={{textDecoration: 'none'}}>Login</Link>
+                                    <Link to="/login" style={{ textDecoration: 'none' , fontFamily: "initial" }}>Already have an account</Link>
                                 </Nav.Item>
                             </Nav>
                         </div>
