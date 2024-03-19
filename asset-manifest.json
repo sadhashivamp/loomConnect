@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/loomConnect/static/css/main.09c176f3.css",
-    "main.js": "/loomConnect/static/js/main.af10a4c5.js",
+    "main.css": "/loomConnect/static/css/main.aa9567bc.css",
+    "main.js": "/loomConnect/static/js/main.2c99e7a3.js",
     "static/media/Reg.png": "/loomConnect/static/media/Reg.5c9a006df253c22f5cc6.png",
     "static/media/Main.gif": "/loomConnect/static/media/Main.ea683223939871bc65a2.gif",
     "static/media/Landing.png": "/loomConnect/static/media/Landing.d7ae7c13c544803505e7.png",
     "index.html": "/loomConnect/index.html",
-    "main.09c176f3.css.map": "/loomConnect/static/css/main.09c176f3.css.map",
-    "main.af10a4c5.js.map": "/loomConnect/static/js/main.af10a4c5.js.map"
+    "main.aa9567bc.css.map": "/loomConnect/static/css/main.aa9567bc.css.map",
+    "main.2c99e7a3.js.map": "/loomConnect/static/js/main.2c99e7a3.js.map"
   },
   "entrypoints": [
-    "static/css/main.09c176f3.css",
-    "static/js/main.af10a4c5.js"
+    "static/css/main.aa9567bc.css",
+    "static/js/main.2c99e7a3.js"
   ]
 }
