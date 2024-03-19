@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import landingImage from "../Assets/Landing.png";
 import Main from "../Assets/Main.gif";
+import { Link } from 'react-router-dom';
 
 const LandingPage = () => {
     return (
@@ -55,7 +56,9 @@ const LandingPage = () => {
                                 style={{ maxWidth: '100%', maxHeight: '100%' }}
                             />
                         </div>
-                        <Button variant="primary" size="lg" href="#" role="button">Explore Now</Button>
+                         <Link to="/selection">
+                            <Button variant="primary" size="lg" role="button">Explore Now</Button>
+                        </Link>
                     </Col>
                 </Row>
             </Container>
